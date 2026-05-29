@@ -1,0 +1,15 @@
+{
+  "hash": "a5805a62a2d4afb128aef874ddf7a7eb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"2026 #30DayChartChallenge\"\nauthor: \"Jonathan Kitt\"\ndate: \"2026-05-29\"\ncategories: [30DayChartChallenge, datavis]\nimage: \"image.jpg\"\n---\n\nThis is a post with executable code.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,12 @@
+---
+title: "2026 #30DayChartChallenge"
+author: "Jonathan Kitt"
+date: "2026-05-29"
+categories: [30DayChartChallenge, datavis]
+---
+
+This is a post with executable code.
+
+```{r}
+1 + 1
+```

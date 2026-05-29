@@ -1,18 +1,7 @@
 ---
-title: "About me"
-image: profile.png
+title: ""
 about:
-  template: trestles
-  links:
-    - icon: bsky
-      text: Bluesky
-      href: https://bsky.app/profile/jonathankitt.bsky.social
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/jonathan-kitt/
-    - icon: github
-      text: Github
-      href: https://github.com/KittJonathan
+  template: solana
 ---
 
-About this blog
+![](benchmark_explanation.png){fig-align="center"}

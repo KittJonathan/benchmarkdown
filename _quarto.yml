@@ -5,7 +5,7 @@ website:
   title: "benchmarkdown"
   navbar:
     right:
-      - icon: house
+      - text: Home
         href: index.qmd
       - text: Blog
         href: blog.qmd
@@ -16,8 +16,7 @@ website:
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      - lux
     css: styles.css
 
 editor: visual
