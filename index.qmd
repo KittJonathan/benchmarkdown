@@ -6,12 +6,7 @@ about:
 
 ```{=html}
 <div class="font-row">
-<<<<<<< HEAD
-  <span style="font-weight: 200; font-size: 5rem; color: #000;">bench</span><span style="font-weight: 200; font-size: 5rem; color: #D9D9D9
-=======
-  <span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #000;">bench</span><span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #D9D9D9
->>>>>>> 39b5d95eda99df36df7e77309b5f755d390fcd40
-  ;">markdown</span>
+  <span style="font-weight: 200; font-size: 5rem; color: #000000;">bench</span><span style="font-weight: 200; font-size: 5rem; color: #D9D9D9;">markdown</span>
 </div>
 ```
 
@@ -21,12 +16,7 @@ I started as a lab technician, developing and implementing molecular biology tec
 
 ```{=html}
 <div class="font-row">
-<<<<<<< HEAD
-  <span style="font-weight: 200; font-size: 5rem; color: #000;">benchmark</span><span style="font-weight: 200; font-size: 5rem; color: #D9D9D9
-=======
-  <span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #000;">benchmark</span><span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #D9D9D9
->>>>>>> 39b5d95eda99df36df7e77309b5f755d390fcd40
-  ;">down</span>
+  <span style="font-weight: 200; font-size: 5rem; color: #000000;">benchmark</span><span style="font-weight: 200; font-size: 5rem; color: #D9D9D9;">down</span>
 </div>
 ```
 
@@ -36,12 +26,7 @@ Having completed a University Degree in Data Science, I'm doing more benchmarkin
 
 ```{=html}
 <div class="font-row">
-<<<<<<< HEAD
-  <span style="font-weight: 200; font-size: 5rem; color: #D9D9D9;">bench</span><span style="font-weight: 200; font-size: 5rem; color: #000
-=======
-  <span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #D9D9D9;">bench</span><span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #00000
->>>>>>> 39b5d95eda99df36df7e77309b5f755d390fcd40
-  ;">markdown</span>
+  <span style="font-weight: 200; font-size: 5rem; color: #D9D9D9;">bench</span><span style="font-weight: 200; font-size: 5rem; color: #000000;">markdown</span>
 </div>
 ```
 
