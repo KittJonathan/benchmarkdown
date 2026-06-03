@@ -4,4 +4,33 @@ about:
   template: solana
 ---
 
-![](benchmark_explanation.png){fig-align="center"}
+```{=html}
+<div class="font-row">
+  <span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #000;">bench</span><span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #D9D9D9
+  ;">markdown</span>
+</div>
+```
+
+I started as a lab technician, developing and implementing molecular biology techniques.
+
+<br>
+
+```{=html}
+<div class="font-row">
+  <span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #000;">benchmark</span><span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #D9D9D9
+  ;">down</span>
+</div>
+```
+
+Having completed a University Degree in Data Science, I'm doing more benchmarking.
+
+<br>
+
+```{=html}
+<div class="font-row">
+  <span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #D9D9D9;">bench</span><span style="font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 5rem; color: #00000
+  ;">markdown</span>
+</div>
+```
+
+Because literate programming is awesome! (and this blog is built in Quarto).
