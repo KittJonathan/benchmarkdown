@@ -7,6 +7,13 @@
     "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "benchmarkdown",
+    "section": "",
+    "text": "benchmarkdown\n\nI started as a lab technician, developing and implementing molecular biology techniques.\n\n\n  benchmarkdown\n\nHaving completed a University Degree in Data Science, I’m doing more benchmarking.\n\n\n  benchmarkdown\n\nBecause literate programming is awesome! (and this blog is built in Quarto)."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About this blog",
