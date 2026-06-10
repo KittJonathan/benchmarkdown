@@ -79,9 +79,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -178,11 +178,9 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="MzBEYXlDaGFydENoYWxsZW5nZQ==">30DayChartChallenge <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YXZpcw==">datavis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
 
 
 
@@ -193,7 +191,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="MzBEYXlDaGFydENoYWxsZW5nZSUyQ2RhdGF2aXM=" data-listing-date-sort="1780005600000" data-listing-file-modified-sort="1781082547101" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39">
+<div class="quarto-post image-right" data-index="0" data-categories="MzBEYXlDaGFydENoYWxsZW5nZSUyQ2RhdGF2aXM=" data-listing-date-sort="1780005600000" data-listing-file-modified-sort="1781093635475" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="49">
 <div class="thumbnail"><a href="./posts/20260529_30dcc2026/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts\20260529_30dcc2026\img\30DayChartChallenge2026.jpg"  class="thumbnail-image card-img"/></p>
@@ -205,13 +203,6 @@ window.Quarto = {
 </h3>
 <div class="listing-subtitle">
 <a href="./posts/20260529_30dcc2026/index.html" class="no-external">2026 edition</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('MzBEYXlDaGFydENoYWxsZW5nZQ=='); return false;">30DayChartChallenge</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YXZpcw=='); return false;">datavis</div>
-
 </div>
 <div class="delink listing-description"><a href="./posts/20260529_30dcc2026/index.html" class="no-external">
 This year, I took part in the #30DayChartChallenge, in which participants can create a chart inspired by the daily prompt.
@@ -240,15 +231,6 @@ Jonathan Kitt
 </h3>
 <div class="listing-subtitle">
 <a href="./posts/post-with-code/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">analysis</div>
-
 </div>
 <div class="delink listing-description"><a href="./posts/post-with-code/index.html" class="no-external">
 This is a post with executable code.

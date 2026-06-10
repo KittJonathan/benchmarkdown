@@ -11,3 +11,21 @@ This year, I took part in the #30DayChartChallenge, in which participants can cr
 This yearly challenge is organised by Cédric Scherer and Dominic Royé, with prompts split across five categories, as shown below:
 
 [![](img/30DayChartChallenge2026.jpg){fig-align="center"}](https://www.linkedin.com/posts/30daychartchallenge-dataviz-datastorytelling-share-7440028455272005632-3R8I/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC-iIt0B3IYD5aTgYOAA5ObGYE760d5zxwY)
+
+<br>
+
+For the 2026 edition, I managed to create 6 charts:
+
+::: {layout-nrow="2"}
+![](img/30DCC_2026_01.png)
+
+![](img/30DCC_2026_02.png)
+
+![](img/30DCC_2026_03.png)
+
+![](img/30DCC_2026_04.png)
+
+![](img/30DCC_2026_05.png)
+
+![](img/30DCC_2026_06.png)
+:::
