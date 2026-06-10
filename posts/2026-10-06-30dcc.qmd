@@ -30,6 +30,31 @@ For the 2026 edition, I managed to create 6 charts:
 ![](img/30DCC_2026_06.png)
 :::
 
+Here are the list of packages I used to create the charts:
+
+| 📦 Package         | Usage |
+|--------------------|-------|
+| `{tidyverse}`      |       |
+| `{palmerpenguins}` |       |
+| `{ggtext}`         |       |
+| `{showtext}`       |       |
+| `{ggpop}`          |       |
+| `{marimekko}`      |       |
+| `{patchwork}`      |       |
+
+<br>
+
+I used the following data sets:
+
+| Prompt | Data |
+|----|----|
+| Day 1: Part-to-Whole | `penguins` |
+| Day 2: Pictogram | `penguins` |
+| Day 3: Mosaic | `penguins` |
+| Day 4: Slope | `penguins` |
+| Day 5: Experimental | simulation of dice rolls |
+| Day 6 (Data Day): Reporters Without Borders | [RSF World Freedom Index](https://rsf.org/en/rsf-world-press-freedom-index-2025-economic-fragility-leading-threat-press-freedom?year=2025&data_type=general) |
+
 # Day One: Part-to-Whole
 
 ```{r}
@@ -162,7 +187,7 @@ p <- tibble(
     legend.position = "none"
   )
 
-p
+# 💾 Save plot ----
 
 ggsave("2026/figs/30DCC_2026_02.png", p, dpi = 320, width = 12, height = 6)
 ```
@@ -219,6 +244,8 @@ p <- ggplot(penguins) +
 
 ggsave("2026/figs/30DCC_2026_03.png", p, dpi = 320, width = 12, height = 6)
 ```
+
+![](img/30DCC_2026_03.png){fig-align="center"}
 
 # Day Four: Slope
 
