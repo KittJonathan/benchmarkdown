@@ -1,12 +1,13 @@
 ---
-title: "2026 #30DayChartChallenge"
+title: "#30DayChartChallenge"
+subtitle: "2026 edition"
 author: "Jonathan Kitt"
 date: "2026-05-29"
 categories: [30DayChartChallenge, datavis]
 ---
 
-This is a post with executable code.
+This year, I took part in the #30DayChartChallenge, in which participants can create a chart inspired by the daily prompt.
 
-```{r}
-1 + 1
-```
+This yearly challenge is organised by Cédric Scherer and Dominic Royé, with prompts split across five categories, as shown below:
+
+[![](img/30DayChartChallenge2026.jpg){fig-align="center"}](https://www.linkedin.com/posts/30daychartchallenge-dataviz-datastorytelling-share-7440028455272005632-3R8I/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC-iIt0B3IYD5aTgYOAA5ObGYE760d5zxwY)
