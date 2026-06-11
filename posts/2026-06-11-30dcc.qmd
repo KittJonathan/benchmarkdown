@@ -2,13 +2,15 @@
 title: "#30DayChartChallenge"
 subtitle: "2026 edition"
 author: "Jonathan Kitt"
-date: "2026-05-29"
+date: "2026-06-11"
 categories: [30DayChartChallenge, datavis]
 ---
 
 This year, I took part in the #30DayChartChallenge, in which participants can create a chart inspired by the daily prompt.
 
-This yearly challenge is organised by Cédric Scherer and Dominic Royé, with prompts split across five categories, as shown below:
+The 2026 challenge was organised by [Cédric Scherer](https://www.linkedin.com/in/cedscherer/) and [Dominic Royé](https://www.linkedin.com/in/dominicroye/).
+
+The 30 prompts were split across five categories, as shown below:
 
 [![](img/30DayChartChallenge2026.jpg){fig-align="center" width="600"}](https://www.linkedin.com/posts/30daychartchallenge-dataviz-datastorytelling-share-7440028455272005632-3R8I/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC-iIt0B3IYD5aTgYOAA5ObGYE760d5zxwY)
 
@@ -30,6 +32,8 @@ For the 2026 edition, I managed to create six charts:
 ![](img/30DCC_2026_06.png)
 :::
 
+<br>
+
 Here is the list of packages I used to create the charts:
 
 | 📦 Package | Usage |
@@ -41,6 +45,8 @@ Here is the list of packages I used to create the charts:
 | [`{ggpop}`](https://jurjoroa.github.io/ggpop/index.html) | Create icon-based population charts |
 | [`{marimekko}`](https://gogonzo.github.io/marimekko/index.html) | Create a mosaic plot |
 | [`{patchwork}`](https://patchwork.data-imaginist.com/) | Group plots |
+
+<br>
 
 <br>
 
