@@ -14,7 +14,7 @@ This yearly challenge is organised by Cédric Scherer and Dominic Royé, with pr
 
 <br>
 
-For the 2026 edition, I managed to create 6 charts:
+For the 2026 edition, I managed to create six charts:
 
 ::: {layout-nrow="2"}
 ![](img/30DCC_2026_01.png)
@@ -30,24 +30,24 @@ For the 2026 edition, I managed to create 6 charts:
 ![](img/30DCC_2026_06.png)
 :::
 
-Here are the list of packages I used to create the charts:
+Here is the list of packages I used to create the charts:
 
-| 📦 Package         | Usage |
-|--------------------|-------|
-| `{tidyverse}`      |       |
-| `{palmerpenguins}` |       |
-| `{ggtext}`         |       |
-| `{showtext}`       |       |
-| `{ggpop}`          |       |
-| `{marimekko}`      |       |
-| `{patchwork}`      |       |
+| 📦 Package | Usage |
+|----|----|
+| [`{tidyverse}`](https://tidyverse.org/packages/) | Clean data and create plots |
+| [`{palmerpenguins}`](https://allisonhorst.github.io/palmerpenguins/) | `penguins` dataset |
+| [`{ggtext}`](https://wilkelab.org/ggtext/) | Add colours to text |
+| [`{showtext}`](https://github.com/yixuan/showtext) | Use different fonts |
+| [`{ggpop}`](https://jurjoroa.github.io/ggpop/index.html) | Create icon-based population charts |
+| [`{marimekko}`](https://gogonzo.github.io/marimekko/index.html) | Create a mosaic plot |
+| [`{patchwork}`](https://patchwork.data-imaginist.com/) | Group plots |
 
 <br>
 
-I used the following data sets:
+I used the following datasets:
 
 | Prompt | Data |
-|----|----|
+|------------------------------------|------------------------------------|
 | Day 1: Part-to-Whole | `penguins` |
 | Day 2: Pictogram | `penguins` |
 | Day 3: Mosaic | `penguins` |
