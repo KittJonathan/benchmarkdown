@@ -4,6 +4,12 @@ about:
   template: solana
 ---
 
+Hello there!
+
+My name is Jonathan Kitt, I work in a research lab in Clermont-Ferrand, France.
+
+On this blog I'll be sharing stuff about R and data visualisation.
+
 ```{=html}
 <div class="font-row">
   <span style="font-weight: 200; font-size: 5rem; color: #000000;">bench</span><span style="font-weight: 200; font-size: 5rem; color: #D9D9D9;">markdown</span>

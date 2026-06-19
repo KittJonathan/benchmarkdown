@@ -53,7 +53,7 @@ Here is the list of packages I used to create the charts:
 I used the following datasets:
 
 | Prompt | Data |
-|------------------------------------|------------------------------------|
+|----|----|
 | Day 1: Part-to-Whole | `penguins` |
 | Day 2: Pictogram | `penguins` |
 | Day 3: Mosaic | `penguins` |

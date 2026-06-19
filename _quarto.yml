@@ -9,6 +9,8 @@ website:
         href: index.qmd
       - text: Blog
         href: blog.qmd
+      - text: Talks
+        href: talks.qmd
       - icon: github
         href: https://github.com/KittJonathan
       - icon: linkedin

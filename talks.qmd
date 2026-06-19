@@ -1,0 +1,9 @@
+---
+title: "Talks"
+page-layout: full
+title-block-banner: true
+---
+
+| Date | Title | Event |
+|----|----|----|
+| 2026-06-16 | [Les ateliers codons : pratiquer, progresser, échanger](2026-06-16-KITT.pdf) | Rencontres R 2026, Nantes |
