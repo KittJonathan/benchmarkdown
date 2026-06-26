@@ -1,0 +1,14 @@
+---
+title: "Tidy StatQuest - 01"
+subtitle: "2026 edition"
+author: "Jonathan Kitt"
+date: "2026-06-11"
+draft: true
+categories: [StatQuest, tidy]
+---
+
+A few years ago, I started watching Joshua Starmer's Youtube videos.
+
+When his first book came out, I quickly got my hands on a copy, and I'm now the happy owner of his StatQuest trilogy (for now?).
+
+Josh's videos and books have been a huge help as I embarked on my statistics/data science journey.
