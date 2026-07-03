@@ -1,14 +1,111 @@
 ---
 title: "Tidy StatQuest - 01"
-subtitle: "2026 edition"
 author: "Jonathan Kitt"
-date: "2026-06-11"
+date: "2026-07-03"
 draft: true
 categories: [StatQuest, tidy]
 ---
 
 A few years ago, I started watching Joshua Starmer's Youtube videos.
 
-When his first book came out, I quickly got my hands on a copy, and I'm now the happy owner of his StatQuest trilogy (for now?).
+When his first book came out, I quickly got my hands on a copy, and I'm now the happy owner of his StatQuest trilogy.
 
 Josh's videos and books have been a huge help as I embarked on my statistics/data science journey.
+
+For each chapter of his books, Josh wrote companion coding tutorials, available on Github.
+
+In this series, I'll be "translating" the coding tutorials into {tidyverse} syntax.
+
+Let's get started!
+
+| Book | Chapter | Coding tutorial |
+|----|----|----|
+| The StatQuest Illustrated Guide to Statistics | 01 - Fundamental Concepts in Statistics!!! | <https://github.com/StatQuest/sigs/tree/main/chapter_01> |
+
+# Set up
+
+```{r}
+# Load packages 
+library(tidyverse)
+library(janitor)
+library(rstatix)
+```
+
+# Load data from a file
+
+The data is available on the Github repository. We download it using the {readr} package:
+
+```{r}
+file_url <- "https://raw.githubusercontent.com/StatQuest/sigs/refs/heads/main/chapter_01/spend_n_save.txt"
+
+spend_n_save <- read_tsv(file_url) |> 
+  clean_names() |> 
+  mutate(id = factor(id))
+```
+
+Print out the first and last rows:
+
+```{r}
+# Print out the first 5 rows
+head(spend_n_save, n = 5)
+
+# Print out the last 5 rows
+tail(spend_n_save, n = 5)
+```
+
+# Population Mean and Standard Deviation
+
+Calculate the mean and standard deviation of the number of apples:
+
+```{r}
+pop_stats <- spend_n_save |> 
+  get_summary_stats(type = "mean_sd")
+
+pop_stats
+```
+
+# Estimated Mean and Standard Deviation
+
+```{r}
+set.seed(42)
+
+est_stats <- spend_n_save |> 
+  slice_sample(n = 5) |> 
+  get_summary_stats(type = "mean_sd")
+
+est_stats
+```
+
+Calculate the biased standard deviation for the sample:
+
+```{r}
+est_stats |> 
+  rename(sd_unbiased = sd) |> 
+  mutate(sd_biased = round(sqrt(sd_unbiased^2 * (n - 1) / n), digits = 3))
+```
+
+# Simulate biased and unbiased estimates
+
+```{r}
+set.seed(42)
+
+var_unbiased <- replicate(n = 1000, expr = {
+  spend_n_save |> 
+  slice_sample(n = 5) |> 
+  summarise(var_unbiased = var(num_apples)) |> 
+  pull()
+})
+```
+
+```{r}
+tibble(
+  n = 5,
+  var_unbiased = var_unbiased
+) |> 
+  mutate(sd_unbiased = sqrt(var_unbiased),
+         var_biased = var_unbiased * (n - 1) / n,
+         sd_biased = sqrt(var_biased)
+         ) |> 
+  summarise(mean_sd_unbiased = round(mean(sd_unbiased), 1),
+            mean_sd_biased = round(mean(sd_biased), 1))
+```
