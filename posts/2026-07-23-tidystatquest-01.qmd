@@ -1,0 +1,227 @@
+---
+title: "Tidy StatQuest - 01"
+author: "Jonathan Kitt"
+date: "2026-07-23"
+categories: [StatQuest, tidy]
+---
+
+![](img/statistics.jpg){fig-align="center"}
+
+A few years ago, I started watching [Joshua Starmer's Youtube videos](https://www.youtube.com/@statquest).
+
+When his first book came out, I quickly got my hands on a copy, and I'm now the happy owner of his [StatQuest trilogy](https://statquest.org/statquest-store/).
+
+Josh's videos and books have been a huge help as I embarked on my statistics/data science journey.
+
+For each chapter of his books, Josh wrote companion coding tutorials, available on Github.
+
+In this series, I'll be "translating" the coding tutorials into {tidyverse} syntax.
+
+Let's get started!
+
+<br>
+
+| Book | Chapter | Coding tutorial |
+|------------------------|------------------------|------------------------|
+| The StatQuest Illustrated Guide to Statistics | 01 - Fundamental Concepts in Statistics!!! | <https://github.com/StatQuest/sigs/tree/main/chapter_01> |
+
+<br>
+
+# Set up
+
+------------------------------------------------------------------------
+
+We'll be using four packages:
+
+|  |  |
+|----|----|
+| [{tidyverse}](https://tidyverse.org/) | import and manipulate data |
+| [{janitor}](https://sfirke.github.io/janitor/) | clean data |
+| [{rstatix}](https://rpkgs.datanovia.com/rstatix/) | calculate statistics |
+| [{gt}](https://gt.rstudio.com/) | generate nice tables |
+
+```{r}
+#| message: false
+#| warning: false
+# Load packages 
+library(tidyverse)
+library(janitor)
+library(rstatix)
+library(gt)
+```
+
+<br>
+
+# Load data from a file
+
+------------------------------------------------------------------------
+
+The data is available on the Github repository. We download it using the {readr} package:
+
+```{r}
+#| message: false
+#| warning: false
+file_url <- "https://raw.githubusercontent.com/StatQuest/sigs/refs/heads/main/chapter_01/spend_n_save.txt"
+
+spend_n_save <- read_tsv(file_url) |> 
+  # clean_names() default settings transform column names using snake case 
+  clean_names() |> 
+  # the 'id' variable is categorical, we transform it into a factor
+  mutate(id = factor(id))
+```
+
+Print out the first and last rows:
+
+```{r}
+# Print out the first 5 rows
+head(spend_n_save, n = 5) |> gt()
+
+# Print out the last 5 rows
+tail(spend_n_save, n = 5) |> gt()
+```
+
+<br>
+
+# Population Mean and Standard Deviation
+
+------------------------------------------------------------------------
+
+Calculate the mean and standard deviation of the number of apples, using the {rstatix} package.
+
+This function calculates different statistics for numerical variables. Since we transformed `id` into a factor, the code returns mean and standard deviation for `num_apples`. We use `mutate()` to round off the results.
+
+```{r}
+pop_stats <- spend_n_save |> 
+  get_summary_stats(type = "mean_sd") |> 
+  mutate(across(where(is.double), ~ round(., 1)))
+
+pop_stats |> gt()
+```
+
+<br>
+
+# Estimated Mean and Standard Deviation
+
+------------------------------------------------------------------------
+
+We set the seed for random number generation using `set.seed(42)`.
+
+The `slice_sample()` function randomly picks `n` rows in a dataframe.
+
+We then apply `get_summary_stats()` to the subset.
+
+```{r}
+set.seed(42)
+
+est_stats <- spend_n_save |> 
+  slice_sample(n = 5) |> 
+  get_summary_stats(type = "mean_sd") |> 
+  mutate(across(where(is.double), ~ round(., 1)))
+
+est_stats |> gt()
+```
+
+<br>
+
+To calculate the biased standard deviation, we use the `est_stats` table we just created, and then:
+
+-   we rename the `sd` variable to `sd_unbiased` using the `rename()` function
+
+-   we calculate the biased standard deviation using the following formula:
+
+$$
+biased\ sd= \sqrt{(unbiased\ sd)^2 \ \times \frac{n-1}{n}}
+$$
+
+-   we round off the results
+
+<br>
+
+```{r}
+est_stats |> 
+  rename(sd_unbiased = sd) |> 
+  mutate(sd_biased = sqrt(sd_unbiased^2 * (n - 1) / n)) |> 
+  mutate(across(where(is.double), ~ round(., 1))) |> 
+  gt()
+```
+
+<br>
+
+# Simulate biased and unbiased estimates
+
+------------------------------------------------------------------------
+
+After setting the seed, we replicate 1,000 experiments consisting in the following steps:
+
+1.  Draw 5 random rows from the table
+2.  Calculate the variance for `num_apples`
+3.  Store the 1,000 computed unbiased variances
+
+<br>
+
+We use the `replicate()` function, which takes two arguments:
+
+-   `n` for the number of replicates
+
+-   `expr` for the code describing the experiment
+
+```{r}
+set.seed(42)
+
+var_unbiased <- replicate(
+  n = 1000, 
+  expr = {
+    spend_n_save |>
+      slice_sample(n = 5) |> 
+      summarise(var_unbiased = var(num_apples)) |> 
+      pull()
+    }
+  )
+```
+
+<br>
+
+Display the first 10 unbiased variances:
+
+```{r}
+head(var_unbiased, 10)
+```
+
+<br>
+
+We then create a table to summarise the results:
+
+-   `n` = 5 (we want to use `n` rather than hard-code the values when computing the biased statistics)
+
+-   a column containing the 1,000 unbiased variances
+
+<br>
+
+Using `mutate()`, we then:
+
+-   calculate the unbiased standard deviation using the square-root of the unbiased variance
+
+-   calculate the biased variance using the formula above
+
+-   calculate the biased standard deviation using the square-root of the biased variance
+
+<br>
+
+Finally, we use `summarise()` to calculate the means of the biased and unbiased standard deviations from the 1,000 experiments.
+
+```{r}
+tibble(
+  n = 5,
+  var_unbiased = var_unbiased
+  ) |> 
+  mutate(
+    sd_unbiased = sqrt(var_unbiased),
+    var_biased = var_unbiased * (n - 1) / n,
+    sd_biased = sqrt(var_biased)
+    ) |> 
+  summarise(
+    mean_sd_unbiased = round(mean(sd_unbiased), 1),
+    mean_sd_biased = round(mean(sd_biased), 1)
+    ) |> 
+  gt()
+```
