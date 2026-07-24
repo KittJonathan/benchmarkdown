@@ -2,7 +2,6 @@
 title: "Tidy StatQuest - 01"
 author: "Jonathan Kitt"
 date: "2026-07-23"
-draft: true
 categories: [StatQuest, tidy]
 ---
 
@@ -23,8 +22,12 @@ Let's get started!
 <br>
 
 | Book | Chapter | Coding tutorial |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | The StatQuest Illustrated Guide to Statistics | 01 - Fundamental Concepts in Statistics!!! | <https://github.com/StatQuest/sigs/tree/main/chapter_01> |
+
+The content of this post is also available as a Jupyter notebook, click on the link below to open it:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/USERNAME/REPO/blob/main/PATH/TO/notebook.ipynb)
 
 <br>
 
@@ -35,11 +38,23 @@ Let's get started!
 We'll be using four packages:
 
 |  |  |
-|----|----|
+|------------------------------------|------------------------------------|
 | [{tidyverse}](https://tidyverse.org/) | import and manipulate data |
 | [{janitor}](https://sfirke.github.io/janitor/) | clean data |
 | [{rstatix}](https://rpkgs.datanovia.com/rstatix/) | calculate statistics |
 | [{gt}](https://gt.rstudio.com/) | generate nice tables |
+
+<br>
+
+```{r}
+# If you need to install the packages, simply uncomment the lines below
+# install.packages("tidyverse")
+# install.packages("janitor")
+# install.packages("rstatix")
+# install.packages("gt")
+```
+
+<br>
 
 ```{r}
 #| message: false
@@ -57,7 +72,7 @@ library(gt)
 
 ------------------------------------------------------------------------
 
-The data is available on the Github repository. We download it using the {readr} package:
+The data is available on the Github repository. We download it using the `{readr}` package:
 
 ```{r}
 #| message: false
@@ -87,7 +102,7 @@ tail(spend_n_save, n = 5) |> gt()
 
 ------------------------------------------------------------------------
 
-Calculate the mean and standard deviation of the number of apples, using the {rstatix} package.
+Calculate the mean and standard deviation of the number of apples, using the `{rstatix}` package.
 
 This function calculates different statistics for numerical variables. Since we transformed `id` into a factor, the code returns mean and standard deviation for `num_apples`. We use `mutate()` to round off the results.
 
@@ -192,7 +207,7 @@ head(var_unbiased, 10)
 
 We then create a table to summarise the results:
 
--   `n` = 5 (we want to use `n` rather than hard-code the values when computing the biased statistics)
+-   `n = 5` (we want to use `n` rather than hard-code the values when computing the biased statistics)
 
 -   a column containing the 1,000 unbiased variances
 
