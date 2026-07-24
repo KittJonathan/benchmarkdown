@@ -23,7 +23,7 @@ Let's get started!
 <br>
 
 | Book | Chapter | Coding tutorial |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | The StatQuest Illustrated Guide to Statistics | 01 - Fundamental Concepts in Statistics!!! | <https://github.com/StatQuest/sigs/tree/main/chapter_01> |
 
 <br>

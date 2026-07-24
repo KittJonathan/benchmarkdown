@@ -5,5 +5,5 @@ title-block-banner: true
 ---
 
 | Date | Title | Event |
-|----|----|----|
-| 2026-06-16 | [Les ateliers codons : pratiquer, progresser, échanger](public/2026-06-16-KITT.pdf) | [Rencontres R 2026, Nantes](https://rr2026.sciencesconf.org/) |
+|------------------------|------------------------|------------------------|
+| 2026-06-16 | [Les ateliers codons : pratiquer, progresser, échanger](public/talks/2026-06-16-KITT.pdf) | [Rencontres R 2026, Nantes](https://rr2026.sciencesconf.org/) |
