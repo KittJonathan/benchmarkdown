@@ -25,11 +25,11 @@ Let's get started!
 |------------------------|------------------------|------------------------|
 | The StatQuest Illustrated Guide to Statistics | 01 - Fundamental Concepts in Statistics!!! | <https://github.com/StatQuest/sigs/tree/main/chapter_01> |
 
+<br>
+
 The content of this post is also available as a Jupyter notebook, click on the link below to open it:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/USERNAME/REPO/blob/main/PATH/TO/notebook.ipynb)
-
-<br>
+<a href="https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_01.ipynb" target="_blank"> <button>Open Jupyter Notebook</button> </a>
 
 # Set up
 
