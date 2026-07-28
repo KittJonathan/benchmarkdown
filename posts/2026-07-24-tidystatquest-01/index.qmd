@@ -1,7 +1,7 @@
 ---
 title: "Tidy StatQuest - 01"
 author: "Jonathan Kitt"
-date: "2026-07-23"
+date: "2026-07-24"
 categories: [StatQuest, tidy]
 ---
 

@@ -1,0 +1,315 @@
+---
+title: "Tidy StatQuest - 02"
+author: "Jonathan Kitt"
+date: "2026-07-29"
+draft: true
+categories: [StatQuest, tidy]
+---
+
+![](img/statistics.jpg){fig-align="center"}
+
+This is the 2nd post in the *Tidy StatQuest* series:
+
+<br>
+
+| Book | Chapter | "Base R" tutorial |
+|------------------------|------------------------|------------------------|
+| The StatQuest Illustrated Guide to Statistics | 01 - Fundamental Concepts in Statistics!!! | <https://github.com/StatQuest/sigs/tree/main/chapter_01> |
+| The StatQuest Illustrated Guide to Statistics | 02 - Visualizing Data and Calculating Probabilities with Histograms!!! | <https://github.com/StatQuest/sigs/blob/main/chapter_02/chapter_02_r.ipynb> |
+
+<br>
+
+The content of this post is also available as a Jupyter notebook, click on the link below to open it:
+
+<a href="https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_01.ipynb" target="_blank"> <button>Open Jupyter Notebook</button> </a>
+
+# Set up
+
+------------------------------------------------------------------------
+
+We'll be using four packages:
+
+|  |  |
+|------------------------------------|------------------------------------|
+| [{tidyverse}](https://tidyverse.org/) | import and manipulate data |
+| [{janitor}](https://sfirke.github.io/janitor/) | clean data |
+| [{rstatix}](https://rpkgs.datanovia.com/rstatix/) | calculate statistics |
+| [{gt}](https://gt.rstudio.com/) | generate nice tables |
+
+<br>
+
+```{r}
+# If you need to install the packages, simply uncomment the lines below
+# install.packages("tidyverse")
+# install.packages("janitor")
+# install.packages("rstatix")
+# install.packages("gt")
+```
+
+<br>
+
+```{r}
+#| message: false
+#| warning: false
+# Load packages 
+library(tidyverse)
+library(janitor)
+library(rstatix)
+library(gt)
+```
+
+<br>
+
+# Load the data and create a histogram
+
+------------------------------------------------------------------------
+
+The data is available on the Github repository. We download it using the `{readr}` package:
+
+```{r}
+#| message: false
+#| warning: false
+file_url <- "https://raw.githubusercontent.com/StatQuest/sigs/refs/heads/main/chapter_01/spend_n_save.txt"
+
+spend_n_save <- read_tsv(file_url) |> 
+  # clean_names() default settings transform column names using snake case 
+  clean_names() |> 
+  # the 'id' variable is categorical, we transform it into a factor
+  mutate(id = factor(id))
+```
+
+Print out the first rows:
+
+```{r}
+# Print out the first 6 rows
+head(spend_n_save) |> gt()
+```
+
+<br>
+
+We set the ggplot theme to `theme_bw()`:
+
+```{r}
+theme_set(theme_bw())
+```
+
+When using the base R `hist()` functions, 19 bins are created.
+
+```{r}
+p <- hist(spend_n_save$num_apples)
+length(p$breaks)
+```
+
+<br>
+
+We use the `{ggplot2}` package to create a simple histogram
+
+```{r}
+ggplot(data = spend_n_save) +
+  geom_histogram(aes(x = num_apples),
+                 color = "black", fill = "white", bins = 19) +
+  labs(title = "Histogram of number of apples")
+```
+
+<br>
+
+# Save the plot
+
+------------------------------------------------------------------------
+
+<br>
+
+To export the plot to a `.png`, we use the `ggsave()` function, which takes 5 arguments:
+
+-   `filename`: the name of the file where the plot will be exported
+
+-   `plot`: the plot we wish to save (defaults to the last plot)
+
+-   `dpi`: plot resolution in pixels
+
+-   `width`: width of the plot in pixels
+
+-   `height`: height of the plot in pixels
+
+<br>
+
+We first save the plot as an R object, then save this object.
+
+```{r}
+#| eval: false
+p <- ggplot(data = spend_n_save) +
+  geom_histogram(aes(x = num_apples),
+                 color = "black", fill = "white", bins = 19) +
+  labs(title = "Histogram of number of apples")
+
+ggsave(filename = "plots/hist.png", plot = p,
+       dpi = 320, width = 12, height = 6)
+```
+
+<br>
+
+# Change the bin sizes
+
+------------------------------------------------------------------------
+
+With `geom_histogram()`, two arguments can be used adjust the number of bins:
+
+-   `bins`: sets the number of bins
+
+```{r}
+ggplot(data = spend_n_save) +
+  geom_histogram(aes(x = num_apples),
+                 color = "black", fill = "white",
+                 bins = 5) +
+  labs(title = "Histogram of number of apples")
+```
+
+-   `bin_width`: sets the width of each bin
+
+```{r}
+ggplot(data = spend_n_save) +
+  geom_histogram(aes(x = num_apples),
+                 color = "black", fill = "white",
+                 binwidth = 5) +
+  labs(title = "Histogram of number of apples")
+```
+
+<br>
+
+# Calculating probabilities from the data
+
+------------------------------------------------------------------------
+
+To calculate the probability of walking into a *Spend-n-Save*store that sells **at least 32 apples**:
+
+-   we filter the table to take the rows in which the `num_apples` variable has a value of at least 32
+
+-   using `nrow()` we count the number of rows matching the filter
+
+```{r}
+num_stores <- spend_n_save |> 
+  filter(num_apples >= 32) |> 
+  nrow()
+
+# print out the result
+num_stores
+```
+
+<br>
+
+To calculate the probability, we divide `num_stores` by the total number or rows in the table, and round off the result:
+
+```{r}
+round(num_stores / nrow(spend_n_save), 2)
+```
+
+<br>
+
+# Draw histograms of the estimated standard deviations we calculated in Chapter 1
+
+------------------------------------------------------------------------
+
+We conduct the same experiment as in the [1st post](https://benchmarkdown.netlify.app/posts/2026-07-24-tidystatquest-01/): simulate 1,000 draws of 5 random values and calculate the biased and unbiased standard deviations.
+
+We use the `replicate()` function, which takes two arguments:
+
+-   `n` for the number of replicates
+
+-   `expr` for the code describing the experiment
+
+We modify the code from the first post to calculate the sum of squared residuals (`ssr`):
+
+```{r}
+set.seed(42)
+
+ssr <- replicate(
+  n = 1000, 
+  expr = {
+    spend_n_save |>
+      slice_sample(n = 5) |> 
+      summarise(ssr = sum((num_apples - mean(num_apples))^2)) |> 
+      pull()
+    }
+  )
+```
+
+```{r}
+set.seed(42)
+
+var_unbiased <- replicate(
+  n = 1000, 
+  expr = {
+    spend_n_save |>
+      slice_sample(n = 5) |> 
+      summarise(var_unbiased = var(num_apples)) |> 
+      pull()
+    }
+  )
+```
+
+<br>
+
+We calculate the biased (square root of $SSR$ divided by $n$) and unbiased (square root of $SSR$ divided by $n-1$) standard deviations:
+
+```{r}
+sd_biased <- sqrt(ssr / 5)
+sd_unbiased <- sqrt(ssr / 4)
+```
+
+```{r}
+head(var_unbiased, 10)
+```
+
+<br>
+
+We print out the averages:
+
+```{r}
+tibble(
+  sd_unbiased = round(mean(sd_unbiased), 1),
+  sd_biased = round(mean(sd_biased), 1)
+) |> 
+  gt()
+```
+
+<br>
+
+We calculate the mean, variance and standard deviation for the population of stores:
+
+```{r}
+pop_stats <- spend_n_save |> 
+  mutate(squared_error = (num_apples - mean(num_apples))^2) |> 
+  summarise(pop_mean = mean(num_apples),
+            pop_var = mean(squared_error),
+            pop_sd = sqrt(pop_var))
+
+pop_stats
+```
+
+<br>
+
+Draw the histograms with the population standard deviation on top (using `geom_vline()`):
+
+```{r}
+ggplot(data = tibble(sd_unbiased)) +
+  geom_histogram(aes(x = sd_unbiased),
+                 color = "black", fill = "white",
+                 bins = 12) +
+    geom_vline(xintercept = pop_stats$pop_sd,
+             col = "red", linetype = "dashed") +
+  labs(title = "Histogram of estimated unbiased standard deviations",
+       subtitle = "Population standard deviation shown in red",
+       x = "Unbiased sd")
+```
+
+```{r}
+ggplot(data = tibble(sd_biased)) +
+  geom_histogram(aes(x = sd_biased),
+                 color = "black", fill = "white",
+                 bins = 12) +
+    geom_vline(xintercept = pop_stats$pop_sd,
+             col = "red", linetype = "dashed") +
+  labs(title = "Histogram of estimated biased standard deviations",
+       subtitle = "Population standard deviation shown in red",
+       x = "Biased sd")
+```
