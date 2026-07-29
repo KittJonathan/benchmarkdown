@@ -14,7 +14,7 @@ This is the 2nd post in the *Tidy StatQuest* series:
 **The StatQuest Illustrated Guide to Statistics**
 
 | Chapter | Blog post | StatQuest notebook | Tidy notebook |
-|-----------------|-----------------|-----------------|-----------------------|
+|----|----|----|----|
 | 01 - Fundamental Concepts in Statistics | [link](https://benchmarkdown.netlify.app/posts/2026-07-24-tidystatquest-01/) | [link](https://github.com/StatQuest/sigs/tree/main/chapter_01/chapter_01_r.ipynb) | [link](https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_01.ipynb) |
 | 02 - Visualizing Data and Calculating Probabilities with Histograms | [link](https://benchmarkdown.netlify.app/posts/2026-07-29-tidystatquest-02/) | [link](https://github.com/StatQuest/sigs/blob/main/chapter_02/chapter_02_r.ipynb) | [link](https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_02.ipynb) |
 
@@ -31,7 +31,7 @@ The content of this post is also available as a Jupyter notebook, click on the l
 We'll be using four packages:
 
 |  |  |
-|------------------------------------|------------------------------------|
+|----|----|
 | [{tidyverse}](https://tidyverse.org/) | import and manipulate data |
 | [{janitor}](https://sfirke.github.io/janitor/) | clean data |
 | [{rstatix}](https://rpkgs.datanovia.com/rstatix/) | calculate statistics |
