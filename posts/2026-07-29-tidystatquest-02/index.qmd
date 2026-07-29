@@ -2,7 +2,6 @@
 title: "Tidy StatQuest - 02"
 author: "Jonathan Kitt"
 date: "2026-07-29"
-draft: true
 categories: [StatQuest, tidy]
 ---
 
@@ -15,15 +14,15 @@ This is the 2nd post in the *Tidy StatQuest* series:
 **The StatQuest Illustrated Guide to Statistics**
 
 | Chapter | Blog post | StatQuest notebook | Tidy notebook |
-|----|----|----|----|
-| 01 - Fundamental Concepts in Statistics!!! | [link](https://benchmarkdown.netlify.app/posts/2026-07-24-tidystatquest-01/) | [link](https://github.com/StatQuest/sigs/tree/main/chapter_01/chapter_01_r.ipynb) | [link](https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_01.ipynb) |
-| 02 - Visualizing Data and Calculating Probabilities with Histograms!!! |  | [link](https://github.com/StatQuest/sigs/blob/main/chapter_02/chapter_02_r.ipynb) |  |
+|-----------------|-----------------|-----------------|-----------------------|
+| 01 - Fundamental Concepts in Statistics | [link](https://benchmarkdown.netlify.app/posts/2026-07-24-tidystatquest-01/) | [link](https://github.com/StatQuest/sigs/tree/main/chapter_01/chapter_01_r.ipynb) | [link](https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_01.ipynb) |
+| 02 - Visualizing Data and Calculating Probabilities with Histograms |  | [link](https://github.com/StatQuest/sigs/blob/main/chapter_02/chapter_02_r.ipynb) | [link](https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_02.ipynb) |
 
 <br>
 
 The content of this post is also available as a Jupyter notebook, click on the link below to open it:
 
-<a href="https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_01.ipynb" target="_blank"> <button>Open Jupyter Notebook</button> </a>
+<a href="https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_02.ipynb" target="_blank"> <button>Open Jupyter Notebook</button> </a>
 
 # Set up
 
@@ -32,7 +31,7 @@ The content of this post is also available as a Jupyter notebook, click on the l
 We'll be using four packages:
 
 |  |  |
-|----|----|
+|------------------------------------|------------------------------------|
 | [{tidyverse}](https://tidyverse.org/) | import and manipulate data |
 | [{janitor}](https://sfirke.github.io/janitor/) | clean data |
 | [{rstatix}](https://rpkgs.datanovia.com/rstatix/) | calculate statistics |
@@ -86,6 +85,8 @@ spend_n_save <- read_tsv(file_url) |>
   mutate(id = factor(id))
 ```
 
+<br>
+
 Print out the first rows:
 
 ```{r}
@@ -117,8 +118,6 @@ ggplot(data = spend_n_save) +
 # Save the plot
 
 ------------------------------------------------------------------------
-
-<br>
 
 To export the plot to a `.png`, we use the `ggsave()` function, which takes 5 arguments:
 
@@ -218,7 +217,9 @@ We use the `replicate()` function, which takes two arguments:
 
 -   `expr` for the code describing the experiment
 
-We modify the code from the first post to calculate the sum of squared residuals (`ssr`):
+<br>
+
+We adapt the code from the first post to calculate the sum of squared residuals (`ssr`):
 
 ```{r}
 set.seed(42)
@@ -276,7 +277,7 @@ pop_stats |> gt()
 
 <br>
 
-Draw the histograms with the population standard deviation on top:
+To draw the histograms with the population standard deviation on top:
 
 -   We first create a `tibble` (the `{tidyverse}`'s dataframe) with two columns: one containing the unbiased standard deviations, the other containing the biased standard deviations
 
@@ -314,7 +315,8 @@ tibble(
   geom_vline(xintercept = pop_stats$pop_sd,
              col = "red", linetype = "dashed")  +
   facet_wrap(~sd, ncol=  1)  +
-    labs(title = "Histogram of estimated unbiased and biased standard deviations",
-       subtitle = "Population standard deviation shown in red",
-       x = "Standard deviation")
+  labs(
+    title = "Histogram of estimated unbiased and biased standard deviations",
+    subtitle = "Population standard deviation shown in red",
+    x = "Standard deviation")
 ```
