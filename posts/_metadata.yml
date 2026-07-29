@@ -6,3 +6,17 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+comments: 
+  giscus: 
+    repo: "KittJonathan/benchmarkdown"
+    repo-id: "R_kgDOSbW7uA"
+    category: "Announcements"
+    category-id: "DIC_kwDOSbW7uM4DCOOg"
+    mapping: pathname
+    reactions-enabled: true
+    loading: lazy
+    input-position: top
+    theme: preferred_color_scheme
+    language: "en"
+    

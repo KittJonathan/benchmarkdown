@@ -16,7 +16,7 @@ This is the 2nd post in the *Tidy StatQuest* series:
 | Chapter | Blog post | StatQuest notebook | Tidy notebook |
 |-----------------|-----------------|-----------------|-----------------------|
 | 01 - Fundamental Concepts in Statistics | [link](https://benchmarkdown.netlify.app/posts/2026-07-24-tidystatquest-01/) | [link](https://github.com/StatQuest/sigs/tree/main/chapter_01/chapter_01_r.ipynb) | [link](https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_01.ipynb) |
-| 02 - Visualizing Data and Calculating Probabilities with Histograms |  | [link](https://github.com/StatQuest/sigs/blob/main/chapter_02/chapter_02_r.ipynb) | [link](https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_02.ipynb) |
+| 02 - Visualizing Data and Calculating Probabilities with Histograms | [link](https://benchmarkdown.netlify.app/posts/2026-07-29-tidystatquest-02/) | [link](https://github.com/StatQuest/sigs/blob/main/chapter_02/chapter_02_r.ipynb) | [link](https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_02.ipynb) |
 
 <br>
 
