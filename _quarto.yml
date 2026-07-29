@@ -18,7 +18,7 @@ website:
 format:
   html:
     theme:
-      - lux
+      - minty
     css: styles.css
 
 editor: visual

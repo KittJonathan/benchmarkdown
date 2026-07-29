@@ -12,10 +12,12 @@ This is the 2nd post in the *Tidy StatQuest* series:
 
 <br>
 
-| Book | Chapter | "Base R" tutorial |
-|------------------------|------------------------|------------------------|
-| The StatQuest Illustrated Guide to Statistics | 01 - Fundamental Concepts in Statistics!!! | <https://github.com/StatQuest/sigs/tree/main/chapter_01> |
-| The StatQuest Illustrated Guide to Statistics | 02 - Visualizing Data and Calculating Probabilities with Histograms!!! | <https://github.com/StatQuest/sigs/blob/main/chapter_02/chapter_02_r.ipynb> |
+**The StatQuest Illustrated Guide to Statistics**
+
+| Chapter | Blog post | StatQuest notebook | Tidy notebook |
+|----|----|----|----|
+| 01 - Fundamental Concepts in Statistics!!! | [link](https://benchmarkdown.netlify.app/posts/2026-07-24-tidystatquest-01/) | [link](https://github.com/StatQuest/sigs/tree/main/chapter_01/chapter_01_r.ipynb) | [link](https://github.com/KittJonathan/benchmarkdown/blob/main/public/notebooks/tidystatquest_01.ipynb) |
+| 02 - Visualizing Data and Calculating Probabilities with Histograms!!! |  | [link](https://github.com/StatQuest/sigs/blob/main/chapter_02/chapter_02_r.ipynb) |  |
 
 <br>
 
@@ -30,7 +32,7 @@ The content of this post is also available as a Jupyter notebook, click on the l
 We'll be using four packages:
 
 |  |  |
-|------------------------------------|------------------------------------|
+|----|----|
 | [{tidyverse}](https://tidyverse.org/) | import and manipulate data |
 | [{janitor}](https://sfirke.github.io/janitor/) | clean data |
 | [{rstatix}](https://rpkgs.datanovia.com/rstatix/) | calculate statistics |
@@ -60,6 +62,12 @@ library(gt)
 
 <br>
 
+We'll be using the `{ggplot2}` package to create figures. We set the theme to `theme_bw`()`:`
+
+```{r}
+theme_set(theme_bw())
+```
+
 # Load the data and create a histogram
 
 ------------------------------------------------------------------------
@@ -81,17 +89,10 @@ spend_n_save <- read_tsv(file_url) |>
 Print out the first rows:
 
 ```{r}
-# Print out the first 6 rows
 head(spend_n_save) |> gt()
 ```
 
 <br>
-
-We set the ggplot theme to `theme_bw()`:
-
-```{r}
-theme_set(theme_bw())
-```
 
 When using the base R `hist()` functions, 19 bins are created.
 
@@ -142,7 +143,7 @@ p <- ggplot(data = spend_n_save) +
                  color = "black", fill = "white", bins = 19) +
   labs(title = "Histogram of number of apples")
 
-ggsave(filename = "plots/hist.png", plot = p,
+ggsave(filename = "hist.png", plot = p,
        dpi = 320, width = 12, height = 6)
 ```
 
@@ -233,31 +234,18 @@ ssr <- replicate(
   )
 ```
 
-```{r}
-set.seed(42)
-
-var_unbiased <- replicate(
-  n = 1000, 
-  expr = {
-    spend_n_save |>
-      slice_sample(n = 5) |> 
-      summarise(var_unbiased = var(num_apples)) |> 
-      pull()
-    }
-  )
-```
-
 <br>
 
 We calculate the biased (square root of $SSR$ divided by $n$) and unbiased (square root of $SSR$ divided by $n-1$) standard deviations:
 
 ```{r}
-sd_biased <- sqrt(ssr / 5)
+sd_biased <- sqrt(ssr/ 5)
 sd_unbiased <- sqrt(ssr / 4)
 ```
 
 ```{r}
-head(var_unbiased, 10)
+head(sd_biased)
+head(sd_unbiased)
 ```
 
 <br>
@@ -266,8 +254,8 @@ We print out the averages:
 
 ```{r}
 tibble(
-  sd_unbiased = round(mean(sd_unbiased), 1),
-  sd_biased = round(mean(sd_biased), 1)
+  sd_unbiased_mean = round(mean(sd_unbiased), 1),
+  sd_biased_mean = round(mean(sd_biased), 1)
 ) |> 
   gt()
 ```
@@ -283,33 +271,50 @@ pop_stats <- spend_n_save |>
             pop_var = mean(squared_error),
             pop_sd = sqrt(pop_var))
 
-pop_stats
+pop_stats |> gt()
 ```
 
 <br>
 
-Draw the histograms with the population standard deviation on top (using `geom_vline()`):
+Draw the histograms with the population standard deviation on top:
+
+-   We first create a `tibble` (the `{tidyverse}`'s dataframe) with two columns: one containing the unbiased standard deviations, the other containing the biased standard deviations
+
+-   We add a row id (`rowid_to_column()`)
+
+-   We pivot the table into a long format using `pivot_longer()`, with two arguments:
+
+    -   the rows to pivot (in this case, all columns except `rowid`)
+
+    -   the name the column containing the pivoted column names will take (`names_to`)
+
+-   We want the histograms to be in the following order: unbiased then biased. To achieve this we transform the `sd` column into a factor, with levels determined by the order of appearance of the classes, using the `{forcats}` package function `fct_inorder()`
+
+-   We then initiate the plot with `ggplot()`
+
+-   We create a histogram for both distributions
+
+-   We add a vertical line showing the population standard deviation
+
+-   Finally, we separate it into two histograms, based on the unbiased/biased classes using `facet_wrap()`. To align the histograms vertically, we use the `ncol` argument.
 
 ```{r}
-ggplot(data = tibble(sd_unbiased)) +
-  geom_histogram(aes(x = sd_unbiased),
+tibble(
+  unbiased_estimates = sd_unbiased,
+  biased_estimates = sd_biased
+) |> 
+  rowid_to_column() |> 
+  pivot_longer(cols = -rowid,
+               names_to = "sd") |> 
+  mutate(sd = fct_inorder(sd)) |> 
+  ggplot() +
+  geom_histogram(aes(x = value),
                  color = "black", fill = "white",
-                 bins = 12) +
-    geom_vline(xintercept = pop_stats$pop_sd,
-             col = "red", linetype = "dashed") +
-  labs(title = "Histogram of estimated unbiased standard deviations",
+                 bins = 19) +
+  geom_vline(xintercept = pop_stats$pop_sd,
+             col = "red", linetype = "dashed")  +
+  facet_wrap(~sd, ncol=  1)  +
+    labs(title = "Histogram of estimated unbiased and biased standard deviations",
        subtitle = "Population standard deviation shown in red",
-       x = "Unbiased sd")
-```
-
-```{r}
-ggplot(data = tibble(sd_biased)) +
-  geom_histogram(aes(x = sd_biased),
-                 color = "black", fill = "white",
-                 bins = 12) +
-    geom_vline(xintercept = pop_stats$pop_sd,
-             col = "red", linetype = "dashed") +
-  labs(title = "Histogram of estimated biased standard deviations",
-       subtitle = "Population standard deviation shown in red",
-       x = "Biased sd")
+       x = "Standard deviation")
 ```
