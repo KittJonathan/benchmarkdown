@@ -121,15 +121,15 @@ ggplot(data = spend_n_save) +
 
 To export the plot to a `.png`, we use the `ggsave()` function, which takes 5 arguments:
 
--   `filename`: the name of the file where the plot will be exported
+- `filename`: the name of the file where the plot will be exported
 
--   `plot`: the plot we wish to save (defaults to the last plot)
+- `plot`: the plot we wish to save (defaults to the last plot)
 
--   `dpi`: plot resolution in pixels
+- `dpi`: plot resolution in pixels
 
--   `width`: width of the plot in pixels
+- `width`: width of the plot in pixels
 
--   `height`: height of the plot in pixels
+- `height`: height of the plot in pixels
 
 <br>
 
@@ -154,7 +154,7 @@ ggsave(filename = "hist.png", plot = p,
 
 With `geom_histogram()`, two arguments can be used adjust the number of bins:
 
--   `bins`: sets the number of bins
+- `bins`: sets the number of bins
 
 ```{r}
 ggplot(data = spend_n_save) +
@@ -164,7 +164,7 @@ ggplot(data = spend_n_save) +
   labs(title = "Histogram of number of apples")
 ```
 
--   `bin_width`: sets the width of each bin
+- `bin_width`: sets the width of each bin
 
 ```{r}
 ggplot(data = spend_n_save) +
@@ -182,9 +182,9 @@ ggplot(data = spend_n_save) +
 
 To calculate the probability of walking into a *Spend-n-Save*store that sells **at least 32 apples**:
 
--   we filter the table to take the rows in which the `num_apples` variable has a value of at least 32
+- we filter the table to take the rows in which the `num_apples` variable has a value of at least 32
 
--   using `nrow()` we count the number of rows matching the filter
+- using `nrow()` we count the number of rows matching the filter
 
 ```{r}
 num_stores <- spend_n_save |> 
@@ -213,9 +213,9 @@ We conduct the same experiment as in the [1st post](https://benchmarkdown.netlif
 
 We use the `replicate()` function, which takes two arguments:
 
--   `n` for the number of replicates
+- `n` for the number of replicates
 
--   `expr` for the code describing the experiment
+- `expr` for the code describing the experiment
 
 <br>
 
@@ -237,7 +237,7 @@ ssr <- replicate(
 
 <br>
 
-We calculate the biased (square root of $SSR$ divided by $n$) and unbiased (square root of $SSR$ divided by $n-1$) standard deviations:
+We calculate the biased (square root of $SSR$\$SSR\$ divided by $n$) and unbiased (square root of $SSR$ divided by $n-1$) standard deviations:
 
 ```{r}
 sd_biased <- sqrt(ssr/ 5)
@@ -279,25 +279,25 @@ pop_stats |> gt()
 
 To draw the histograms with the population standard deviation on top:
 
--   We first create a `tibble` (the `{tidyverse}`'s dataframe) with two columns: one containing the unbiased standard deviations, the other containing the biased standard deviations
+- We first create a `tibble` (the `{tidyverse}`'s dataframe) with two columns: one containing the unbiased standard deviations, the other containing the biased standard deviations
 
--   We add a row id (`rowid_to_column()`)
+- We add a row id (`rowid_to_column()`)
 
--   We pivot the table into a long format using `pivot_longer()`, with two arguments:
+- We pivot the table into a long format using `pivot_longer()`, with two arguments:
 
-    -   the rows to pivot (in this case, all columns except `rowid`)
+  - the rows to pivot (in this case, all columns except `rowid`)
 
-    -   the name the column containing the pivoted column names will take (`names_to`)
+  - the name the column containing the pivoted column names will take (`names_to`)
 
--   We want the histograms to be in the following order: unbiased then biased. To achieve this we transform the `sd` column into a factor, with levels determined by the order of appearance of the classes, using the `{forcats}` package function `fct_inorder()`
+- We want the histograms to be in the following order: unbiased then biased. To achieve this we transform the `sd` column into a factor, with levels determined by the order of appearance of the classes, using the `{forcats}` package function `fct_inorder()`
 
--   We then initiate the plot with `ggplot()`
+- We then initiate the plot with `ggplot()`
 
--   We create a histogram for both distributions
+- We create a histogram for both distributions
 
--   We add a vertical line showing the population standard deviation
+- We add a vertical line showing the population standard deviation
 
--   Finally, we separate it into two histograms, based on the unbiased/biased classes using `facet_wrap()`. To align the histograms vertically, we use the `ncol` argument.
+- Finally, we separate it into two histograms, based on the unbiased/biased classes using `facet_wrap()`. To align the histograms vertically, we use the `ncol` argument.
 
 ```{r}
 tibble(
